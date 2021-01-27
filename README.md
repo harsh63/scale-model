@@ -2,7 +2,7 @@
 This repo contains a small portion of the Seably system and is used for recruitment purposes.
 This system follows a lot of the same logic as the full system but with less complexity and less depth.
 
-If you're seeing this readme you've most probably been asked to add a feature in the system of fix a bug, if so the description of the task has been sent to you elsewhere.
+If you're seeing this readme you've most probably been asked to add a feature in the system or fix a bug, if so the description of the task has been sent to you elsewhere.
 
 ## Getting the system up an running
 Hopefully you're able to get the system up and running through calling `bin/setup`.
@@ -36,7 +36,7 @@ This seed file is also included automatically when running `bin/rails db:reset`.
 
 ## Linting with eslint and rubocop
 All Seably code is checked for linting issues automatically on our CI machine.
-To make sure the code will pass the linting check the follow help exists.
+To make sure the code will pass future linting, the following tools exist.
 
 **To lint the ruby code run:**
 ```
@@ -53,7 +53,7 @@ Add `--fix` flag to fix the linting automatically.
 ## Tests
 The scale model repo contains some of the tests the full system does, but it's not as extensively tested. For instance we've only included some unit tests for the models here, and not a full suite. Other libraries that we're using, such as RSpec, has been skipped completely.
 
-On the real app all tests are run on our CI machine on every push and need to pass before a branch can be merged. 
+In the real app all tests are run on our CI machine on every push and need to pass before a branch can be merged.
 
 ### Unit tests
 Unit tests are written using Minitest, and are placed in `/test/` folder.
@@ -75,7 +75,7 @@ To run the tests:
 bin/yarn cypress
 ```
 
-**OR** if you're in headless environment like WSL a VM or similar you can run:
+**OR** if you're in headless environment like WSL, a VM or similar you can run:
 ```
 bin/yarn cypress:ci
 ```
