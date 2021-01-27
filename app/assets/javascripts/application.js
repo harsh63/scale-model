@@ -11,6 +11,10 @@
 // about supported directives.
 //
 //= require rails-ujs
-//= require activestorage
 //= require turbolinks
-//= require_tree .
+
+document.addEventListener("DOMContentLoaded", function() {
+  if (window.Cypress) {
+    window.document.body.dataset.turbolinks = "false";
+  }
+});
