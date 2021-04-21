@@ -41,11 +41,17 @@ module Manage
         @vessel = scope.find(params[:id])
         authorize([:manage, :settings, @vessel])
         if @vessel.destroy
+          assign_employees
           redirect_back fallback_location: edit_manage_organization_settings_meta_data_path,
                         flash: { success: "Vessel removed!" }
         else
           render "edit", flash: { danger: "There were issues removing the vessel" }
         end
+      end
+
+      def remove
+        @vessel = scope.find(params[:id])
+        authorize([:manage, :settings, @vessel])
       end
 
       private
@@ -56,6 +62,14 @@ module Manage
 
       def vessel_params
         params.require(:vessel).permit(:id, :name)
+      end
+
+      def assign_employees
+        return if params[:assign_to_id].blank?
+
+        assign_to = scope.find(params[:assign_to_id])
+        assign_to.employments << @vessel.employments
+        assign_to.save!
       end
     end
   end
