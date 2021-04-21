@@ -26,18 +26,27 @@ describe("Manage > Settings > Vessels", () => {
   });
 
   it("remove an existing vessel", () => {
-    cy.on("window:confirm", () => {
-      return true;
-    });
     cy.get("[data-cy=vessel-1-remove]").click();
+    cy.get("[data-cy=vessel-submit]").click();
     cy.get("[data-cy=vessel-1]").should("not.exist");
   });
 
-  it("skip removing existing vessel with confirmation modal", () => {
-    cy.on("window:confirm", () => {
-      return false;
+  it("remove current and assign employees to other vessel", () => {
+    cy.get("[data-cy=vessel-2]").within(() => {
+      cy.contains("View (0)");
     });
     cy.get("[data-cy=vessel-1-remove]").click();
+    cy.get("[data-cy=select-vessel]").select("2");
+    cy.get("[data-cy=vessel-submit]").click();
+    cy.get("[data-cy=vessel-1]").should("not.exist");
+    cy.get("[data-cy=vessel-2]").within(() => {
+      cy.contains("View (1)");
+    });
+  });
+
+  it("skip removing existing vessel with confirmation modal", () => {
+    cy.get("[data-cy=vessel-1-remove]").click();
+    cy.get("[data-cy=vessel-cancel]").click();
     cy.get("[data-cy=vessel-1]");
   });
 });
